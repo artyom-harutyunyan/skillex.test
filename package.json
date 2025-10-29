@@ -1,0 +1,40 @@
+{
+  "name": "skillex.test",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "build": "tsc",
+    "dev": "nodemon",
+    "start": "node dist/index.js",
+    "seed": "ts-node ./src/seeds/index.ts"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/artyom-harutyunyan/skillex.test.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "type": "commonjs",
+  "bugs": {
+    "url": "https://github.com/artyom-harutyunyan/skillex.test/issues"
+  },
+  "homepage": "https://github.com/artyom-harutyunyan/skillex.test#readme",
+  "devDependencies": {
+    "@types/express": "^5.0.5",
+    "@types/morgan": "^1.9.10",
+    "@types/node": "^24.9.1",
+    "nodemon": "^3.1.10",
+    "ts-node": "^10.9.2",
+    "typescript": "^5.9.3"
+  },
+  "dependencies": {
+    "dotenv": "^17.2.3",
+    "express": "^5.1.0",
+    "morgan": "^1.10.1",
+    "mysql2": "^3.15.3",
+    "zod": "^4.1.12"
+  }
+}
