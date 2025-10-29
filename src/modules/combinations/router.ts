@@ -9,7 +9,7 @@ router.post('/generate', validateBody, async (req: Request, res: Response) => {
     const result = await service.generate(req.body);
     return res.json(result);
   } catch (error: Error | any) {
-    res.status(500).json({ error: `${error.cause === 400 ? error.message : 'Internal server error'}` });
+    res.status(error .cause || 500).json({ error: `${error.cause === 400 ? error.message : 'Internal server error'}` });
   }
 });
 
