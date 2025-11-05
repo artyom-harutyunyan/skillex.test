@@ -1,4 +1,5 @@
 import { letters } from '../../constants';
+import { CombinationsHelper } from '../../helper/combinations';
 import { Repository } from './repository';
 import { IBody } from './schema';
 
@@ -27,44 +28,11 @@ class Service {
   }
 
   private getCombinations(values: string[], prefixes: string[], combinationLength: number) {
-    const results: string[][] = [];
-    if (combinationLength <= 0 || combinationLength > values.length) return results;
-    const combination: string[] = [];
-    const usedPrefixes = new Set();
-  
-    function combine(fromIndex: number) {
-      if (combination.length === combinationLength) {
-        results.push(combination.slice());
-        return;
-      }
-      let isValidCombination = true;
-      for (let i = fromIndex; i < values.length; i++) {
-        const prefix = prefixes[i];
-        if (usedPrefixes.has(prefix)) continue;
-        if (combination.length) {
-          for (let c = 0; c < combination.length; c++) {
-            const existsCombinationPrefix = combination[c]?.substring(0, 1);
-            if (values[i]?.includes(existsCombinationPrefix as string)) {
-              isValidCombination = false;
-            };
-          }
-        }
-
-        if (isValidCombination) {
-          combination.push(values[i] as string);
-          usedPrefixes.add(prefix);
-          combine(i + 1);
-          combination.pop();
-          usedPrefixes.delete(prefix);
-        }
-        isValidCombination = true;
-      }
-    }
-  
-    combine(0);
-    return results;
+    const combinationHelper = new CombinationsHelper(values, prefixes, combinationLength);
+    combinationHelper.generate();
+    return combinationHelper.getResults();
   }
-
+  
 }
 
 export default new Service();
